@@ -16,12 +16,17 @@ export class MembersService {
 
   constructor(private http: HttpClient) {}
 
-  getMembers(page?: number, itemsPerPage?: number) {
+  getMembers(
+    page?: number,
+    itemsPerPage?: number,
+    orderBy: string = 'lastActive'
+  ) {
     let params = new HttpParams();
 
     if (page !== null && itemsPerPage !== null) {
       params = params.append('pageNumber', page.toString());
       params = params.append('pageSize', itemsPerPage.toString());
+      params = params.append('orderBy', orderBy.toString());
     }
 
     return this.http

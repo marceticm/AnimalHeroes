@@ -14,6 +14,7 @@ export class MemberListComponent implements OnInit {
   pagination: Pagination;
   pageNumber = 1;
   pageSize = 5;
+  orderBy = 'lastActive';
 
   constructor(private memberService: MembersService) {}
 
@@ -23,7 +24,7 @@ export class MemberListComponent implements OnInit {
 
   loadMembers() {
     this.memberService
-      .getMembers(this.pageNumber, this.pageSize)
+      .getMembers(this.pageNumber, this.pageSize, this.orderBy)
       .subscribe((response) => {
         this.members = response.result;
         this.pagination = response.pagination;
